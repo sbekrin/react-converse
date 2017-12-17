@@ -1,0 +1,29 @@
+language: node_js
+
+node_js:
+- stable
+
+branches:
+  only:
+  - master
+
+env:
+  global:
+  - SSH_KEY="deploy_key"
+  - GIT_NAME="Travis CI"
+  - GIT_EMAIL="sergey@bekrin.me"
+  - SOURCE_DIR="styleguide"
+  - DEPLOY_BRANCH="master"
+
+before_install:
+- openssl aes-256-cbc -K $encrypted_ed5ccac1467d_key -iv $encrypted_ed5ccac1467d_iv -in travis.enc -out deploy_key -d
+- chmod 600 deploy_key
+- eval `ssh-agent -s`
+- ssh-add deploy_key
+
+script:
+- npm test
+- npm run build
+
+after_success:
+- npm run deploy

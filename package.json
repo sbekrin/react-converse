@@ -31,7 +31,8 @@
     "jest": "jest --no-cache",
     "flow": "flow src/",
     "coverage": "cat coverage/remapped/lcov.info | coveralls",
-    "styleguide": "styleguidist server"
+    "styleguide": "styleguidist server",
+    "deploy": "gh-pages-travis"
   },
   "dependencies": {
     "hoist-non-react-statics": "^2.3.1",
@@ -58,6 +59,7 @@
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.5.1",
     "flow-bin": "^0.60.1",
+    "gh-pages-travis": "^1.0.4",
     "html-webpack-plugin": "^2.30.1",
     "html-webpack-react-root-plugin": "^0.9.0",
     "husky": "^0.14.3",
