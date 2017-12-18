@@ -1,7 +1,7 @@
 {
   "name": "react-converse",
   "description": "React component for creating chatbots via graph data",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Sergey Bekrin <sergey@bekrin.me> (http://bekrin.me)",
   "license": "MIT",
   "repository": "react-converse/react-converse",
