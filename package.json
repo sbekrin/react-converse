@@ -8,7 +8,13 @@
   "main": "dist/cjs/react-converse.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
-  "files": ["index.js", "graph.js", "index.d.ts", "graph.d.ts", "dist/"],
+  "files": [
+    "index.js",
+    "graph.js",
+    "index.d.ts",
+    "graph.d.ts",
+    "dist/"
+  ],
   "keywords": [
     "react",
     "bot",
@@ -19,14 +25,13 @@
     "react-converse"
   ],
   "scripts": {
+    "prepublishOnly": "npm test && npm run build",
     "build:esm": "babel src/ -d dist/esm/ --ignore *.spec.js",
     "build:cjs": "webpack",
     "build:styleguide": "styleguidist build",
     "prebuild": "rimraf dist/ styleguide/",
-    "build":
-      "cross-env NODE_ENV=production npm run build:esm && npm run build:cjs && npm run build:styleguide",
-    "test":
-      "cross-env NODE_ENV=test npm run eslint && npm run flow && npm run jest",
+    "build": "cross-env NODE_ENV=production npm run build:esm && npm run build:cjs && npm run build:styleguide",
+    "test": "cross-env NODE_ENV=test npm run eslint && npm run flow && npm run jest",
     "eslint": "eslint src/ docs/",
     "jest": "jest --no-cache",
     "flow": "flow src/",
@@ -49,6 +54,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.0",
     "cross-env": "^5.1.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
@@ -81,7 +87,9 @@
   },
   "browserslist": "last 2 versions, ie 10",
   "babel": {
-    "presets": ["./.babel"]
+    "presets": [
+      "./.babel"
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -106,6 +114,8 @@
   "jest": {
     "setupTestFrameworkScriptFile": "./.jest.js",
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js"]
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   }
 }
