@@ -1,8 +1,0 @@
-node_modules/
-styleguide/
-coverage/
-dist/
-.vscode/
-.DS_Store
-jsconfig.json
-*.log*
