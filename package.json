@@ -8,13 +8,7 @@
   "main": "dist/cjs/react-converse.js",
   "jsnext:main": "dist/esm/index.js",
   "module": "dist/esm/index.js",
-  "files": [
-    "index.js",
-    "graph.js",
-    "index.d.ts",
-    "graph.d.ts",
-    "dist/"
-  ],
+  "files": ["index.js", "graph.js", "index.d.ts", "graph.d.ts", "dist/"],
   "keywords": [
     "react",
     "bot",
@@ -26,16 +20,19 @@
   ],
   "scripts": {
     "prepublishOnly": "npm test && npm run build",
+    "precommit": "lint-staged",
     "build:esm": "babel src/ -d dist/esm/ --ignore *.spec.js",
     "build:cjs": "webpack",
     "build:styleguide": "styleguidist build",
     "prebuild": "rimraf dist/ styleguide/",
-    "build": "cross-env NODE_ENV=production npm run build:esm && npm run build:cjs && npm run build:styleguide",
-    "test": "cross-env NODE_ENV=test npm run eslint && npm run flow && npm run jest",
+    "build":
+      "cross-env NODE_ENV=production npm run build:esm && npm run build:cjs && npm run build:styleguide",
+    "test":
+      "cross-env NODE_ENV=test npm run eslint && npm run flow && npm run jest",
     "eslint": "eslint src/ docs/",
     "jest": "jest --no-cache",
     "flow": "flow src/",
-    "coverage": "cat coverage/remapped/lcov.info | coveralls",
+    "coverage": "cat coverage/lcov.info | coveralls",
     "styleguide": "styleguidist server",
     "deploy": "gh-pages-travis"
   },
@@ -87,9 +84,7 @@
   },
   "browserslist": "last 2 versions, ie 10",
   "babel": {
-    "presets": [
-      "./.babel"
-    ]
+    "presets": ["./.babel"]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -114,8 +109,10 @@
   "jest": {
     "setupTestFrameworkScriptFile": "./.jest.js",
     "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ]
+    "collectCoverageFrom": ["src/**/*.js"]
+  },
+  "lint-staged": {
+    "*.js": ["prettier --parser flow --write", "eslint", "git add"],
+    "*.{json,md}": ["prettier --write", "git add"]
   }
 }
