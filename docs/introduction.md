@@ -4,7 +4,7 @@ great being small, flexible, and customizable.
 
 If you're looking for complete solution with predefined basic components and
 theming, checkout
-[react-converse-essentials](https://github.com/sergeybekrin/react-converse-essentials)
+[react-converse-essentials](https://github.com/react-converse/react-converse-essentials)
 for zero-configuration solution.
 
 ```js

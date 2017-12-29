@@ -7,9 +7,22 @@
 [![devDependencies Status](https://img.shields.io/david/dev/react-converse/react-converse.svg?maxAge=0)](https://david-dm.org/react-converse/react-converse?type=dev)
 
 **react-converse** _or just Converse_, is a module for creating chatbot-like
-interaction with data in graph format. It helps with data and UI separation
-great, being super flexible and customizable.
+interaction based on data in graph format. It solves data and UI separation
+great being small, flexible, and customizable.
+
+If you're looking for complete solution with predefined basic components and
+theming, checkout
+[react-converse-essentials](https://github.com/react-converse/react-converse-essentials)
+for zero-configuration solution.
+
+---
+
+**[Documentation](http://bit.ly/react-converse)**
+
+**[Essentials Kit](https://github.com/react-converse/react-converse-essentials)**
+
+---
 
 ## License
 
-[MIT License](./license), Copyright © 2017 Sergey Bekrin
+[MIT License](./license) © 2017 Sergey Bekrin
