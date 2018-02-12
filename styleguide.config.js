@@ -2,9 +2,11 @@ const path = require('path');
 
 module.exports = {
   title: '🤖💬',
-  components: 'src/@(containers|hocs)/**/*.js',
+  components: 'src/**/*.js',
   require: [path.resolve(__dirname, 'docs/setup')],
-  highlightTheme: 'monokai',
+  editorConfig: {
+    theme: 'monokai',
+  },
   sections: [
     { name: 'Introduction', content: 'docs/introduction.md' },
     { name: 'Quick Start', content: 'docs/quick-start.md' },
@@ -46,6 +48,7 @@ module.exports = {
       item: {
         '& a': {
           color: 'rgba(255, 255, 255, 0.9) !important',
+          cursor: 'pointer !important',
           fontWeight: 500,
           '&:hover': {
             color: '#fff !important',
@@ -90,36 +93,46 @@ module.exports = {
         boxSizing: 'border-box',
         backgroundColor: 'transparent',
         '&::-webkit-input-placeholder': {
+          isolate: false,
           opacity: 1,
           color: 'rgba(255, 255, 255, 0.7)',
         },
         '&:-moz-placeholder': {
+          isolate: false,
           opacity: 1,
           color: 'rgba(255, 255, 255, 0.7)',
         },
         '&::-moz-placeholder': {
+          isolate: false,
           opacity: 1,
           color: 'rgba(255, 255, 255, 0.7)',
         },
         '&:-ms-input-placeholder': {
+          isolate: false,
           opacity: 1,
           color: 'rgba(255, 255, 255, 0.7)',
         },
         '&:hover': {
+          isolate: false,
           borderColor: 'rgba(255, 255, 255, 0.7)',
         },
         '&:focus': {
+          isolate: false,
           borderColor: '#fff !important',
           '&::-webkit-input-placeholder': {
+            isolate: false,
             color: 'rgba(255, 255, 255, 0.9)',
           },
           '&:-moz-placeholder': {
+            isolate: false,
             color: 'rgba(255, 255, 255, 0.9)',
           },
           '&::-moz-placeholder': {
+            isolate: false,
             color: 'rgba(255, 255, 255, 0.9)',
           },
           '&:-ms-input-placeholder': {
+            isolate: false,
             color: 'rgba(255, 255, 255, 0.9)',
           },
         },
