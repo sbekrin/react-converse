@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Graph, GraphNode, HistoryItem } from './graph';
 
 // Prop types
-export interface ConverseProviderProps<T> {
+export interface ConverseProps<T> {
   graph: Graph;
   children: (
     history: Array<HistoryItem>,
@@ -18,11 +18,11 @@ export interface StepComponentProps<T> {
 }
 
 // Component types
-export type ConverseProviderComponent<T> = React.ComponentClass<
-  ConverseProviderProps<T>
+export type ConverseComponent<T> = React.ComponentClass<
+  ConverseProps<T>
 >;
 export type StepComponent<T> = React.ComponentType<StepComponentProps<T>>;
 
 // Components
-export const ConverseProvider: ConverseProviderComponent<object>;
+export const Converse: ConverseComponent<object>;
 export const Step: StepComponent<object>;

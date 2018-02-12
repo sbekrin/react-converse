@@ -10,14 +10,14 @@ for zero-configuration solution.
 ```js
 // Tell react-converse how to render your conversation
 const Chat = ({ children }) => (
-  <ConverseProvider graph={createFromElements(children)}>
+  <Converse graph={createFromElements(children)}>
     {(history, typing) => (
       <Container>
         {history.map(props => <Message {...props} />)}
         {typing && <Indicator />}
       </Container>
     )}
-  </ConverseProvider>
+  </Converse>
 );
 
 // Provide data to your conversation

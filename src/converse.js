@@ -24,7 +24,7 @@ type State = {
 /**
  * Conversation container provider
  */
-class ConverseProvider extends React.PureComponent<Props, State> {
+class Converse extends React.PureComponent<Props, State> {
   static childContextTypes = {
     __converse: object,
   };
@@ -119,4 +119,4 @@ class ConverseProvider extends React.PureComponent<Props, State> {
   }
 }
 
-export default ConverseProvider;
+export default Converse;

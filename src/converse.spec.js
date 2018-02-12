@@ -1,20 +1,18 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { object } from 'prop-types';
-import { ConverseProvider } from '~/index';
+import { Converse } from '~/index';
 import { createGraph, createNode, createEdge } from '~/graph';
 
 const createProviderMocks = graph => {
   const DummyComponentMock = jest.fn().mockReturnValue(<div />);
   DummyComponentMock.contextTypes = { __converse: object.isRequired };
   const renderPropMock = jest.fn(history => <DummyComponentMock />);
-  const wrapper = mount(
-    <ConverseProvider graph={graph}>{renderPropMock}</ConverseProvider>
-  );
+  const wrapper = mount(<Converse graph={graph}>{renderPropMock}</Converse>);
   return { DummyComponentMock, renderPropMock, wrapper };
 };
 
-describe('ConverseProvider', () => {
+describe('<Converse />', () => {
   test('calls render prop', () => {
     const { renderPropMock } = createProviderMocks(
       createGraph([createNode('foo')], [])

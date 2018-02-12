@@ -8,7 +8,7 @@ Define _Message_, _Container_, and _Indiciator_ components and provide some
 data:
 
 ```js static
-import { ConverseProvider, withConverse } from 'react-converse';
+import { Converse, withConverse } from 'react-converse';
 import { createGraph, createNode, createEdge } from 'react-converse/graph';
 
 // Primary message component
@@ -79,12 +79,12 @@ const data = createGraph(
 );
 
 // Put everything together!
-<ConverseProvider graph={data}>
+<Converse graph={data}>
   {(history, typing) => (
     <Container>
       {history.map(props => <Message {...props} />)}
       {typing && <Indicator />}
     </Container>
   )}
-</ConverseProvider>;
+</Converse>;
 ```

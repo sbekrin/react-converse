@@ -1,5 +1,5 @@
 // @flow
-import ConverseProvider from '~/converse-provider';
+import Converse from '~/converse';
 import withConverse from '~/with-converse';
 
-export { ConverseProvider, withConverse };
+export { Converse, withConverse };

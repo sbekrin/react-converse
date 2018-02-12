@@ -1,7 +1,7 @@
-### `<ConverseProvider />`
+### `<Converse />`
 
 ```js static
-import { ConverseProvider } from 'react-converse';
+import { Converse } from 'react-converse';
 ```
 
 Component for orchestration internal state and keeping data separate from
@@ -23,7 +23,7 @@ representation.
 import { Converse } from 'react-converse';
 
 const Chat = data => (
-  <ConverseProvider graph={data}>
+  <Converse graph={data}>
     {history => (
       <ul className="chat">
         {history.map(item => (
@@ -33,7 +33,7 @@ const Chat = data => (
         ))}
       </ul>
     )}
-  </ConverseProvider>
+  </Converse>
 );
 ```
 
