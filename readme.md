@@ -1,4 +1,4 @@
-# 🤖💬 React Converse
+# 🤖💬 react-converse
 
 [![npm Version](https://img.shields.io/npm/v/react-converse.svg?maxAge=0)](https://www.npmjs.com/package/react-converse)
 [![Build Status](https://img.shields.io/travis/react-converse/react-converse.svg?maxAge=0)](https://travis-ci.org/react-converse/react-converse)
@@ -17,9 +17,9 @@ for zero-configuration solution.
 
 ---
 
-**[Documentation](http://bit.ly/react-converse)**
+**[📑 Documentation](http://bit.ly/react-converse)**
 
-**[Essentials Kit](https://github.com/react-converse/react-converse-essentials)**
+**[🕹 Essentials Kit](https://github.com/react-converse/react-converse-essentials)**
 
 ---
 
