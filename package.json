@@ -61,7 +61,7 @@
     "eslint-plugin-flowtype": "^2.43.0",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-react": "^7.6.1",
-    "flow-bin": "^0.68.0",
+    "flow-bin": "^0.69.0",
     "gh-pages-travis": "^1.0.4",
     "html-webpack-plugin": "^2.30.1",
     "html-webpack-react-root-plugin": "^0.9.0",
