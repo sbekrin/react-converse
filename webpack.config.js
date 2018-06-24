@@ -5,6 +5,7 @@ const externals = []
   .concat(Object.keys(packageData.devDependencies));
 
 module.exports = {
+  mode: process.env.NODE_ENV || 'development',
   entry: path.join(__dirname, 'src/index.js'),
   output: {
     path: path.resolve(__dirname, 'dist', 'cjs'),

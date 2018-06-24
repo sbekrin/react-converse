@@ -25,7 +25,7 @@ export function createFromElements(
       .map((props, index, values) => {
         const hasNextNode = index + 1 in values;
         const { next = hasNextNode ? values[index + 1].mark : null } = props;
-        return { ...props, next: Array.isArray(next) ? next : [next] };
+        return { ...props, next };
       })
       // Reduce nodes to graph with nodes and edges
       .reduce(({ nodes, links }, element, index): Graph => {
@@ -36,9 +36,10 @@ export function createFromElements(
           invariant(mark, 'Expected first step to have unique mark prop');
         }
         // Create new graph based on prev one
+        const nextArray = Array.isArray(next) ? next : [next];
         return createGraph(
           [...nodes, createNode(mark, props)],
-          next
+          nextArray
             .filter(Boolean)
             .reduce((acc, link) => [...acc, createEdge(mark, link)], links)
         );
@@ -132,6 +133,7 @@ const Step = ({
   mark?: string,
   component?: React.ComponentType<*>,
   children?: any,
+  next?: string,
 }) => children;
 
 export default Step;
