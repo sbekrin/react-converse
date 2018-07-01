@@ -57,11 +57,9 @@ Higher-order component to access Converse API.
 
 **Injected Props:**
 
-| Name            | Type                                               | Description                                                                                                                                |
-| --------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| showNextMessage | <code>(key?:&nbsp;string)&nbsp;=>&nbsp;void</code> | Pushes next item to history. It accepts optional key in case current node has edges with more than one node (e.g. using select component). |
-| startTyping     | `() => void`                                       | Shows typing indicator.                                                                                                                    |
-| endTyping       | `() => void`                                       | Hides typing indicator. Could be overwritten by passing `typing={true}` prop to `Converse` component.                                      |
+| Name     | Type                                  | Description      |
+| -------- | ------------------------------------- | ---------------- |
+| converse | [`ConverseContext`](#conversecontext) | Converse context |
 
 **Returns:**
 
@@ -213,3 +211,19 @@ Creats new Graph based on array of React Elements.
 **Returns:**
 
 <code>[Graph](#create-graph)</code>
+
+## Types
+
+### `ConverseContext`
+
+| Name            | Type                    | Description                                |
+| --------------- | ----------------------- | ------------------------------------------ |
+| getGraph        | `() => void`            | Returns current graph data                 |
+| getPath         | `() => void`            | Returns current path in graph              |
+| pushPath        | `(node: Node) => void`  | Adds new node to path                      |
+| popPath         | `() => void`            | Removes last item from path                |
+| replacePath     | `(id: string) => void`  | Replaces current message with new one      |
+| resetPath       | `() => void`            | Resets whole conversation to the beginning |
+| startTyping     | `() => void`            | Enables typing indicator                   |
+| endTyping       | `() => void`            | Disables typing indicator                  |
+| showNextMessage | `(id: ?string) => void` | Shows next or desired message by id        |

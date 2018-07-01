@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConverseContext throws without provider 1`] = `"No \`Converse\` provider was not found. Make sure to wrap root of your App with it."`;

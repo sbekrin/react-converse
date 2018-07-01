@@ -1,8 +1,9 @@
 // @flow
 import * as React from 'react';
 import { object } from 'prop-types';
-import { getRootNodeId, getNodesFromPath } from '~/graph';
-import type { Graph, GraphNodeId, ConverseContext } from '~/types';
+import { getRootNodeId, getNodesFromPath, getChildrenNodes } from '~/graph';
+import type { Graph, GraphNodeId } from '~/types';
+import ConverseContext from './context';
 
 const noop = () => {};
 
@@ -19,16 +20,10 @@ type Props = {
 type State = {
   path: GraphNodeId[],
   typing: boolean,
+  prefix: number,
 };
 
-/**
- * Conversation container provider
- */
 class Converse extends React.PureComponent<Props, State> {
-  static childContextTypes = {
-    __converse: object,
-  };
-
   static defaultProps = {
     onChange: noop,
     compose: (item: {}) => item,
@@ -38,40 +33,28 @@ class Converse extends React.PureComponent<Props, State> {
   state = {
     path: [],
     typing: false,
+    prefix: Date.now(),
   };
 
-  getChildContext(): { __converse: ConverseContext } {
-    return {
-      __converse: {
-        getGraph: this.getGraph,
-        getPath: this.getPath,
-        pushPath: this.push,
-        popPath: this.pop,
-        replacePath: this.replace,
-        startTyping: this.startTyping,
-        endTyping: this.endTyping,
-      },
-    };
-  }
-
   componentWillMount() {
-    if (this.state.path.length) return;
+    if (this.state.path.length) {
+      return;
+    }
     // Start conversation with root node
     const rootNode = getRootNodeId(this.props.graph);
-    if (rootNode) this.push(rootNode);
+    if (rootNode) {
+      this.pushPath(rootNode);
+    }
   }
 
-  /** @private */
   notifyOnUpdate = () => this.props.onChange(this.state.path);
 
-  /** @private */
   getGraph = () => this.props.graph;
 
-  /** @private */
   getPath = () => this.state.path;
 
   // Add item to path
-  push = (item: GraphNodeId) => {
+  pushPath = (item: GraphNodeId) => {
     this.setState(
       ({ path }) => ({ path: [...path, item] }),
       this.notifyOnUpdate
@@ -79,7 +62,7 @@ class Converse extends React.PureComponent<Props, State> {
   };
 
   // Pop last path item
-  pop = () => {
+  popPath = () => {
     this.setState(
       ({ path }) => ({ path: path.slice(0, -1) }),
       this.notifyOnUpdate
@@ -87,11 +70,20 @@ class Converse extends React.PureComponent<Props, State> {
   };
 
   // Replace last item in path
-  replace = (item: GraphNodeId) => {
+  replacePath = (item: GraphNodeId) => {
     this.setState(
       ({ path }) => ({ path: [...path.slice(0, -1), item] }),
       this.notifyOnUpdate
     );
+  };
+
+  // Reset path to initial state
+  resetPath = () => {
+    const rootNodeId = getRootNodeId(this.props.graph);
+    this.setState(() => ({
+      prefix: Date.now(),
+      path: rootNodeId ? [rootNodeId] : [],
+    }));
   };
 
   startTyping = () => {
@@ -102,19 +94,52 @@ class Converse extends React.PureComponent<Props, State> {
     this.setState(() => ({ typing: false }));
   };
 
-  getTyping = () => this.props.typing || this.state.typing;
+  getTyping() {
+    return this.props.typing || this.state.typing;
+  }
 
   getHistory(): Array<{ key: React.Key }> {
     const { graph, compose } = this.props;
-    const { path } = this.state;
+    const { path, prefix } = this.state;
     return getNodesFromPath(graph, path)
-      .map(({ id, value }, index) => ({ ...value, key: `${id}$${index}` }))
+      .map(({ id, value }, index) => ({
+        ...value,
+        key: `${prefix}$${id}$${index}`,
+      }))
       .map(node => compose(node));
   }
 
+  showNextMessage = (id: ?GraphNodeId = null) => {
+    const graph = this.getGraph();
+    const path = this.getPath();
+    // Force show node if id is provided
+    if (id) {
+      return this.pushPath(id);
+    }
+    // Get next node id
+    const [next] = getChildrenNodes(graph, path[path.length - 1]);
+    if (next) {
+      this.pushPath(next.id);
+    }
+  };
+
   render() {
-    return React.Children.only(
-      this.props.children(this.getHistory(), this.getTyping())
+    return (
+      <ConverseContext.Provider
+        value={{
+          getGraph: this.getGraph,
+          getPath: this.getPath,
+          pushPath: this.pushPath,
+          popPath: this.popPath,
+          replacePath: this.replacePath,
+          resetPath: this.resetPath,
+          startTyping: this.startTyping,
+          endTyping: this.endTyping,
+          showNextMessage: this.showNextMessage,
+        }}
+      >
+        {this.props.children(this.getHistory(), this.getTyping())}
+      </ConverseContext.Provider>
     );
   }
 }

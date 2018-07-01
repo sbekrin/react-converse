@@ -1,7 +1,7 @@
 Install react-converse:
 
-```bash
-npm install --save react-converse
+```sh
+yarn add react-converse
 ```
 
 Define _Message_, _Container_, and _Indiciator_ components and provide some
@@ -16,8 +16,8 @@ const Message = withConverse(
   class extends React.Component {
     componentWillMount() {
       const send = () => {
-        this.props.endTyping();
-        this.props.showNextMessage();
+        this.props.converse.endTyping();
+        this.props.converse.showNextMessage();
       };
       // Display outcoming message immediately
       if (this.props.outcoming) {
@@ -25,7 +25,7 @@ const Message = withConverse(
         return;
       }
       // Delay sending message by 750ms
-      this.props.startTyping();
+      this.props.converse.startTyping();
       this.timeout = setTimeout(send, 750);
     }
 
@@ -59,7 +59,9 @@ const Container = ({ children }) => (
       border: '1px solid #ddd',
       maxWidth: '200px',
     }}
-  >{children}</div>
+  >
+    {children}
+  </div>
 );
 
 // Typing indicator

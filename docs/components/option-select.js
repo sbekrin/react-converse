@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { object } from 'prop-types';
-import { withConverse } from 'react-converse';
+import { withConverse, ConverseContext } from 'react-converse';
 import Row from './row';
 
 const Option = styled.button`
@@ -23,14 +23,19 @@ const Option = styled.button`
   }
 `;
 
-class SelectReply extends React.Component<
-  {
-    options: {},
-    onSelect: (key: string) => void,
-    showNextMessage: (key?: string) => void,
-  },
-  { selected: boolean }
-> {
+/*
+type Props = {
+  converse: typeof ConverseContext,
+  options: {},
+  onSelect: (option: string) => {},
+};
+
+type State = {
+  selected: boolean,
+};
+*/
+
+class SelectReply extends React.Component<Props, State> {
   static propTypes = {
     options: object.isRequired,
   };
@@ -41,13 +46,12 @@ class SelectReply extends React.Component<
 
   onSelect(key) {
     this.setState({ selected: true });
-
     // Call onSelect callback if provided, or show next selected key
     if (this.props.onSelect) {
       this.props.onSelect(key);
-      this.props.showNextMessage();
+      this.props.converse.showNextMessage();
     } else {
-      this.props.showNextMessage(key);
+      this.props.converse.showNextMessage(key);
     }
   }
 
@@ -60,15 +64,8 @@ class SelectReply extends React.Component<
   }
 
   render() {
-    if (this.state.selected) return null;
-    const {
-      options,
-      showNextMessage,
-      startTyping,
-      endTyping,
-      ...props
-    } = this.props;
-    return (
+    const { options, converse, ...props } = this.props;
+    return this.state.selected ? null : (
       <Row>
         <div {...props}>
           {Object.keys(options).map(key =>

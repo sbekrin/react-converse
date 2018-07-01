@@ -7,7 +7,7 @@ theming, checkout
 [react-converse-essentials](https://github.com/react-converse/react-converse-essentials)
 for zero-configuration solution.
 
-```js
+```js { "props": { "style": { "height": 265 } } }
 // Tell react-converse how to render your conversation
 const Chat = ({ children }) => (
   <Converse graph={createFromElements(children)}>
@@ -20,6 +20,11 @@ const Chat = ({ children }) => (
   </Converse>
 );
 
+// Add some simple action for an example
+const Reply = withConverse(({ converse, ...rest }) => (
+  <button {...rest} onClick={converse.resetPath} />
+));
+
 // Provide data to your conversation
 <Chat>
   <Step mark="start">omg hi</Step>
@@ -27,5 +32,8 @@ const Chat = ({ children }) => (
   <Step>so declarative</Step>
   <Step>much react</Step>
   <Step outcoming>wow</Step>
+  <Step outcoming action>
+    <Reply>🔁Restart</Reply>
+  </Step>
 </Chat>;
 ```

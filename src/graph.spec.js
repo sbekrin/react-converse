@@ -14,14 +14,14 @@ import {
 } from '~/graph';
 
 describe('Graph', () => {
-  test('createGraph', () => {
+  it('createGraph', () => {
     expect(createGraph()).toEqual({
       nodes: [],
       links: [],
     });
   });
 
-  test('createNode', () => {
+  it('createNode', () => {
     expect(createNode('foo', { bar: 42 })).toEqual({
       id: 'foo',
       value: {
@@ -30,19 +30,19 @@ describe('Graph', () => {
     });
   });
 
-  test('createEdge', () => {
+  it('createEdge', () => {
     expect(createEdge('foo', 'bar')).toEqual({
       source: 'foo',
       target: 'bar',
     });
   });
 
-  test('getRootNodeId', () => {
+  it('getRootNodeId', () => {
     const graph = createGraph([createNode('foo', {})], []);
     expect(getRootNodeId(graph)).toEqual('foo');
   });
 
-  test('getNode', () => {
+  it('getNode', () => {
     const graph = createGraph([createNode('foo', {})], []);
     expect(getNode(graph, 'foo')).toEqual({
       id: 'foo',
@@ -50,7 +50,7 @@ describe('Graph', () => {
     });
   });
 
-  test('hasChild', () => {
+  it('hasChild', () => {
     const graph = createGraph(
       [createNode('foo', {}), createNode('bar', {})],
       [createEdge('foo', 'bar')]
@@ -58,7 +58,7 @@ describe('Graph', () => {
     expect(hasChild(graph, 'foo', 'bar')).toEqual(true);
   });
 
-  test('getChildrenNodes', () => {
+  it('getChildrenNodes', () => {
     const graph = createGraph(
       [createNode('foo', {}), createNode('bar', {}), createNode('baz', {})],
       [createEdge('foo', 'bar'), createEdge('foo', 'baz')]
@@ -69,7 +69,7 @@ describe('Graph', () => {
     ]);
   });
 
-  test('getNodesFromPath', () => {
+  it('getNodesFromPath', () => {
     const graph = createGraph(
       [createNode('foo', {}), createNode('bar', {}), createNode('baz', {})],
       [createEdge('foo', 'bar'), createEdge('bar', 'baz')]
@@ -81,7 +81,7 @@ describe('Graph', () => {
     ]);
   });
 
-  test('createFromElements', () => {
+  it('createFromElements', () => {
     const graph = createFromElements([
       <Step mark="root">Hi</Step>,
       <Step>Ho</Step>,
