@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/travis/react-converse/react-converse.svg?maxAge=0)](https://travis-ci.org/react-converse/react-converse)
 [![Coverage Status](https://img.shields.io/coveralls/react-converse/react-converse.svg?maxAge=0)](https://coveralls.io/github/react-converse/react-converse?branch=master)
 [![dependencies Status](https://img.shields.io/david/react-converse/react-converse.svg?maxAge=0)](https://david-dm.org/react-converse/react-converse)
-[![devDependencies Status](https://img.shields.io/david/dev/react-converse/react-converse.svg?maxAge=0)](https://david-dm.org/react-converse/react-converse?type=dev)
+[![devDependencies Status](https://img.shields.io/david/dev/react-converse/react-converse.svg?maxAge=0)](https://david-dm.org/react-converse/react-converse?type=dev) [![Greenkeeper badge](https://badges.greenkeeper.io/sergeybekrin/react-converse.svg)](https://greenkeeper.io/)
 
 **react-converse** is a module for creating chatbot-like interaction based on
 data in graph format. It solves data and UI separation great being small,
