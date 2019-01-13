@@ -17,7 +17,7 @@ for zero-configuration solution.
 
 ---
 
-**[📑 Documentation](https://sergeybekrin.github.io/react-converse/)**
+**[📑 Documentation](https://sbekrin.github.io/react-converse/)**
 
 **[🕹 Essentials Kit](https://github.com/react-converse/react-converse-essentials)**
 
